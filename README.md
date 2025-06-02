@@ -2,7 +2,7 @@
 
 A modern and responsive React app that allows users to read and bookmark chapters, with clean UI, animated alerts, a floating menu, and a beautiful 404 error page. Built using React.js, Tailwind CSS, Axios, and Framer Motion.
 
-![404 Preview](https://illustrations.popsy.co/gray/web-error.svg)
+![Demo Preview](./demo_image.png)
 
 ---
 
@@ -36,3 +36,5 @@ A modern and responsive React app that allows users to read and bookmark chapter
 ```bash
 git clone https://github.com/ibhimwhar/Think-and-Grow-Rich-client.git
 cd Think-and-Grow-Rich-client
+npm install
+npm run dev
