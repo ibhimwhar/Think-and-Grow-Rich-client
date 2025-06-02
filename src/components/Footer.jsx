@@ -14,7 +14,7 @@ const Footer = () => {
 
             <p>&copy; {new Date().getFullYear()} Think and Grow Rich. All rights reserved.</p>
             <p>
-                Built by <a href="https://yourportfolio.com" target="_blank" className="underline hover:text-[var(--TextColor)]">Ibhimwhar</a>
+                Built by <a href="https://vercel.com/ibhimwhars-projects/think-and-grow-rich-client/6AJhzg1DKvVFQEtLjnCRdUbEKCBZ" target="_blank" className="underline hover:text-[var(--TextColor)]">Ibhimwhar</a>
             </p>
         </footer>
     )
