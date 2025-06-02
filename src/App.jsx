@@ -7,7 +7,6 @@ import Summary from "./pages/Sidebars/Summary";
 import Quotations from "./pages/Sidebars/Quotations";
 import Theme from "./pages/Sidebars/Theme";
 import Loading from "./components/Loading";
-import BookMarkContainer from "./pages/Contents/BookMark";
 import Video from "./pages/Sidebars/Video";
 import Developer from "./components/Developer";
 import NotFound from "./components/NoPage";
@@ -79,7 +78,7 @@ const App = () => {
             <Route exact path="/content" element={<Content />} />
             <Route exact path="/content/read" element={<Read />} />
             <Route exact path="/content/read/:id" element={<ReadDetails />} />
-            <Route exact path="/content/book-mark" element={<BookMarkContainer />} />
+            <Route exact path="/content/book-mark" element={<BookMark />} />
             <Route exact path="/content/notes" element={<Notes />} />
 
             {/* 404 */}

@@ -10,7 +10,6 @@ const BookMarkContainer = () => {
     const [chapters, setChapters] = useState([]);
     const [bookmarks, setBookmarks] = useState([]);
     const [loading, setLoading] = useState(true);
-    const [bookmarkLoading, setBookmarkLoading] = useState(false);
     const [message, setMessage] = useState(false)
 
 

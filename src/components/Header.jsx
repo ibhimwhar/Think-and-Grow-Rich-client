@@ -14,7 +14,7 @@ import {
 } from "lucide-react"
 import { useEffect, useRef, useState } from "react"
 import BackgroundImage from "../assets/artworks-000490784616-5lx6n0-t500x500.jpg"
-import { Link, useLocation } from "react-router"
+import { NavLink, useLocation } from "react-router"
 import { motion, AnimatePresence } from "framer-motion";
 
 
@@ -148,22 +148,22 @@ const Header = () => {
                 {/* Sidebar Menu Items */}
                 <div className="border-r border-neutral-100 h-full overflow-y-auto">
 
-                    <Link to={"/"}>
-                        <button className="flex cursor-pointer items-center gap-3 w-full text-left text-sm mt-5 px-5 py-2 hover:bg-neutral-100 transition">
+                    <NavLink to={"/"}>
+                        <button onClick={() => setMenuOpen(false)} className="flex cursor-pointer items-center gap-3 w-full text-left text-sm mt-5 px-5 py-2 hover:bg-neutral-100 transition">
                             <span className={`${Location === "/" ? "text-[var(--TextColor)]" : ""}`}><MapPinHouse size={17} /></span> Home
                         </button>
-                    </Link>
+                    </NavLink>
 
                     {SideMenus.map((section, index) => (
                         <div key={index} className={`${index === 0 && "border-b border-neutral-100 mb-3 pt-2 pb-5"}`}>
                             <h4 className="p-2 text-xs text-neutral-500">{section.group}</h4>
                             {section.items.map((item, i) =>
                                 item.link ? (
-                                    <Link key={i} to={item.link}>
+                                    <NavLink key={i} to={item.link}>
                                         <button onClick={() => setMenuOpen(false)} className="flex cursor-pointer items-center gap-3 w-full text-left text-sm px-5 py-2 hover:bg-neutral-100 transition">
                                             <span className={`${item.link === Location ? "text-[var(--TextColor)]" : ""}`}>{item.icon}</span> {item.title}
                                         </button>
-                                    </Link>
+                                    </NavLink>
                                 ) : (
                                     <button
                                         key={i}

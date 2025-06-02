@@ -85,6 +85,11 @@ const Notes = () => {
                     type="text"
                     value={input}
                     onChange={e => setInput(e.target.value)}
+                    onKeyDown={(event) => {
+                        if (event.key === "Enter") {
+                            addNote()
+                        }
+                    }}
                     placeholder="Write a note..."
                     className="flex-1 border border-neutral-200 focus:ring-2 ring-[var(--TextColor)] outline-none p-2 rounded-md"
                 />
@@ -100,6 +105,9 @@ const Notes = () => {
                 <p className="text-neutral-500">No notes added yet.</p>
             ) : (
                 <ul className="space-y-3">
+                    
+                    <p className='text-sm text-[var(--TextColor))]'>{notes.length} {notes.length > 1 ? "note's" : "note"} added</p>
+                    
                     {notes.map(note => (
                         <li
                             key={note.id}

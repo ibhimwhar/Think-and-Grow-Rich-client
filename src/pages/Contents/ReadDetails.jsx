@@ -7,10 +7,12 @@ import {
     BookmarkCheck,
     Instagram,
     MapPinHouse,
+    Minus,
     NotebookPen,
     Paintbrush,
     Palette,
     PenTool,
+    Plus,
     X,
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -28,6 +30,9 @@ const ReadDetails = () => {
 
     const [paint, setPaint] = useState(false);
     const [selectedColor, setSelectedColor] = useState(null);
+
+    const [count, setCount] = useState(16)
+    const [highlight, setHighLight] = useState(false)
 
 
     useEffect(() => {
@@ -68,7 +73,7 @@ const ReadDetails = () => {
     useEffect(() => {
         intervalRef.current = setInterval(() => {
             setNotification(true);
-        }, 3000);
+        }, 8000);
 
         // Clean up on unmount
         return () => clearInterval(intervalRef.current);
@@ -131,6 +136,7 @@ const ReadDetails = () => {
     }
 
     const themeColors = [
+        { name: "Original", from: "#ffffff", to: "#ffffff" },       // Original Color
         { name: "Cyan", from: "#164e63", to: "#0e7490" },       // Deep Cyan
         { name: "Violet", from: "#5b21b6", to: "#7c3aed" },     // Strong Violet
         { name: "Lime", from: "#365314", to: "#65a30d" },       // Earthy Lime
@@ -153,11 +159,32 @@ const ReadDetails = () => {
         setPaint(false);
     };
 
+    const MaxSize = () => {
+        if (count < 50) {
+            setCount(prev => prev + 3)
+        }
+        setHighLight(true)
+        setTimeout(() => {
+            setHighLight(false)
+        }, 1000)
+    }
+
+    const MinSize = () => {
+        if (count > 12) {
+            setCount(prev => prev - 3)
+        }
+        setHighLight(true)
+        setTimeout(() => {
+            setHighLight(false)
+        }, 1000)
+    }
+
     return (
         <div
-            className="p-4 space-y-5 rounded-md "
+            className="p-4 space-y-5 rounded-md overflow-x-hidden"
             style={{
                 backgroundImage: selectedColor ? `linear-gradient(to top left, ${selectedColor.from}, ${selectedColor.to})` : "",
+                fontSize: count + "px"
             }}
         >
             <AnimatePresence>
@@ -176,12 +203,18 @@ const ReadDetails = () => {
             </AnimatePresence>
 
             <h1
-                style={{ color: selectedColor ? "#ffffff" : "", }}
-                className="text-center text-2xl font-bold">{chapter.title}</h1>
+                style={{ color: selectedColor && selectedColor.name !== "Original" ? "#ffffff" : "", }}
+                className={`text-center text-2xl md:text-4xl font-bold ${!selectedColor || selectedColor.name === "Original" ? "text-black" : ""}`}
+            >
+                {chapter.title}
+            </h1>
 
             <p
-                style={{ color: selectedColor ? "#eeeeee" : "", }}
-                className="text-justify text-balance text-neutral-700">{chapter.description}</p>
+                style={{ color: selectedColor && selectedColor.name !== "Original" ? "#ffffff" : "", }}
+                className={`text-justify text-balance ${!selectedColor || selectedColor.name === "Original" ? "text-neutral-600" : ""}`}
+            >
+                {chapter.description}
+            </p>
 
             {/* Floating Menu */}
             <div className="fixed bottom-6 right-6 flex flex-col items-end gap-3 z-50">
@@ -195,7 +228,7 @@ const ReadDetails = () => {
                                 className="flex cursor-pointer items-center gap-3 w-full text-sm hover:bg-neutral-100 transition rounded-md p-2"
                             >
                                 <span
-                                    className="p-3 rounded-full"
+                                    className={`p-3 rounded-full ${color.name === "Original" ? "ring ring-neutral-200" : ""}`}
                                     style={{
                                         backgroundImage: `linear-gradient(to top left, ${color.from}, ${color.to})`,
                                     }}
@@ -209,7 +242,7 @@ const ReadDetails = () => {
                 {selectedColor && (
                     <div className="flex items-center gap-3 border border-neutral-200 bg-white p-3 rounded-xl shadow-lg transition-all">
                         <span
-                            className="p-2 rounded-full"
+                            className="p-2 rounded-full ring ring-neutral-200"
                             style={{
                                 backgroundImage: `linear-gradient(to top left, ${selectedColor.from}, ${selectedColor.to})`,
                             }}
@@ -243,6 +276,29 @@ const ReadDetails = () => {
                                 </button>
                             )
                         )}
+                        <div
+                            className="flex items-center gap-3 w-full text-sm px-4 py-2 hover:bg-neutral-100 transition rounded-md"
+                        >
+
+                            <button
+                                onClick={MaxSize}
+                                className="hover:bg-white active:ring-2 ring-[var(--TextColor)] cursor-pointer p-1.5 rounded-full">
+                                <Plus size={17} />
+                            </button>
+
+                            <button
+                                onClick={MinSize}
+                                className="hover:bg-white active:ring-2 ring-[var(--TextColor)] cursor-pointer p-1.5 rounded-full">
+                                <Minus size={17} />
+                            </button>
+
+                            <p>
+                                Size
+                                <span className={`text-[10px] ${highlight ? "text-[var(--TextColor)]" : ""}`}>{count + "px"}
+                                </span>
+                            </p>
+
+                        </div>
 
                         <button
                             onClick={HandlePaint}

@@ -87,11 +87,13 @@ const Quotations = () => {
                 </AnimatePresence>
             )}
 
-            <img
-                src={Image}
-                alt="Think and grow rich book"
-                className="w-full rounded-md mb-4"
-            />
+            <div className='flex justify-center'>
+                <img
+                    src={Image}
+                    alt="Think and grow rich book"
+                    className="min-w-50 rounded-md mb-4"
+                />
+            </div>
 
             <p className='mt-8 mb-5 text-sm text-[var(--TextColor)]'>{quotes.length} quotes available</p>
 
@@ -99,7 +101,7 @@ const Quotations = () => {
                 {quotes.map((item) => (
                     <div
                         key={item.id}
-                        className="bg-white p-5 rounded-xl shadow-sm border border-neutral-200 hover:shadow-md transition-shadow"
+                        className="bg-white p-5 rounded-md border border-neutral-200 hover:shadow-md transition-shadow"
                     >
                         <div className="text-neutral-700 text-sm md:text-base leading-relaxed mb-3">
                             {item.id}. {item.description}

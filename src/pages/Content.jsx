@@ -15,7 +15,7 @@ const Content = () => {
     ]
 
     return (
-        <section className='grid gap-5 w-full p-5'>
+        <section className='grid gap-5 w-full py-5'>
             {message && (
                 <AnimatePresence>
                     <motion.div
@@ -32,7 +32,7 @@ const Content = () => {
             )}
             {cards.map((item, i) => {
                 const CardContent = (
-                    <div className='cursor-pointer space-y-2 transition-all shadow-sm hover:shadow-md border border-neutral-200 rounded-xl p-5 text-center'>
+                    <div className='cursor-pointer space-y-2 transition-all hover:shadow-xs border border-neutral-200 rounded-md p-8 text-center'>
                         <div className="flex justify-center">{item.icon}</div>
                         <h1 className="text-sm font-medium">{item.title}</h1>
                     </div>

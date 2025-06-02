@@ -36,7 +36,7 @@ const Home = () => {
                     <h3 className="text-xl md:text-2xl">Napoleon Hill</h3>
 
                     <Link to={"/content"}>
-                        <button className="mt-6 px-10 py-2 rounded-lg bg-[var(--TextColor)] cursor-pointer transition-all duration-300 hover:opacity-80">
+                        <button className="mt-6 px-10 py-2 rounded-md bg-[var(--TextColor)] cursor-pointer transition-all duration-300 hover:opacity-80">
                             Start
                         </button>
                     </Link>

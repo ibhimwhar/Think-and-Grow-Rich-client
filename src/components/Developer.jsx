@@ -5,6 +5,7 @@ import Image_3 from ".././assets/download (2).png"
 import Image_4 from ".././assets/download (3).png"
 import Image_5 from ".././assets/download (4).png"
 import Image_6 from ".././assets/download (5).png"
+import { Github } from "lucide-react"
 
 const Developer = () => {
 
@@ -45,6 +46,16 @@ const Developer = () => {
                         <h1 className="text-4xl sm:text-5xl font-bold">I'm Ibrahim</h1>
 
                         <p className="text-neutral-500 text-sm">Frontend Developer & UI / UX Designer</p>
+
+                        <a
+                            href="http://github.com/ibhimwhar"
+                            target="_blank"
+                        >
+                            <button
+                                className="text-sm cursor-pointer border border-neutral-100 p-1.5 rounded-full">
+                                <Github size={20} />
+                            </button>
+                        </a>
 
                     </div>
 
