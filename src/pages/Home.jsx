@@ -24,7 +24,7 @@ const Home = () => {
         <div className="md:p-5">
             <div className="relative rounded-2xl overflow-hidden">
                 {/* Overlay */}
-                <div className="bg-black/90 text-white absolute inset-0 p-4 flex flex-col justify-center gap-2 md:gap-5 items-center text-center">
+                <div className="bg-black/90 text-white absolute inset-0 p-4 flex flex-col justify-center gap-3 md:gap-5 items-center text-center">
                     <h1 className="font-semibold text-3xl md:text-5xl">Think and Grow Rich</h1>
 
                     <p className="tracking-wider text-sm md:text-base">
