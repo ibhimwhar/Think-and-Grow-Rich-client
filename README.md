@@ -35,4 +35,4 @@ A modern and responsive React app that allows users to read and bookmark chapter
 
 ```bash
 git clone https://github.com/ibhimwhar/Think-and-Grow-Rich-client.git
-cd cunknonw
+cd Think-and-Grow-Rich-client
