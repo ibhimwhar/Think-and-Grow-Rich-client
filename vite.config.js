@@ -7,9 +7,5 @@ export default defineConfig({
     react(),
     css()
   ],
-<<<<<<< HEAD
   base: "/"
-=======
-  base: "/",
->>>>>>> b6b711a5cf89f4cb7a3bdfbaa97a8d04012db300
 })
