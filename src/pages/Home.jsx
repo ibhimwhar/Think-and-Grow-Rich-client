@@ -21,10 +21,10 @@ const Home = () => {
 
     ]
     return (
-        <div className="p-5">
+        <div className="md:p-5">
             <div className="relative rounded-2xl overflow-hidden">
                 {/* Overlay */}
-                <div className="bg-black/90 text-white absolute inset-0 p-4 flex flex-col justify-center gap-5 items-center text-center">
+                <div className="bg-black/90 text-white absolute inset-0 p-4 flex flex-col justify-center gap-2 md:gap-5 items-center text-center">
                     <h1 className="font-semibold text-3xl md:text-5xl">Think and Grow Rich</h1>
 
                     <p className="tracking-wider text-sm md:text-base">
@@ -41,9 +41,9 @@ const Home = () => {
                         </button>
                     </Link>
 
-                    <p className="text-sm tracking-widest text-center">
+                    <p className="text-[10px] tracking-widest text-center">
                         Curious about the developer?{" "}
-                        <Link to="/developer" className="text-base text-[var(--TextColor)] hover:underline underline-offset-2">
+                        <Link to="/developer" className="text-[12px] text-[var(--TextColor)] hover:underline underline-offset-2">
                             Visit the Developer Page
                         </Link>
                     </p>
