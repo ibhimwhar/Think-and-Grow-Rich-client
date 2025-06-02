@@ -10,6 +10,7 @@ import Loading from "./components/Loading";
 import BookMarkContainer from "./pages/Contents/BookMark";
 import Video from "./pages/Sidebars/Video";
 import Developer from "./components/Developer";
+import NotFound from "./components/NoPage";
 
 // Lazy-load pages
 const Home = lazy(() => import("./pages/Home"));
@@ -84,11 +85,7 @@ const App = () => {
             {/* 404 */}
             <Route
               path="*"
-              element={
-                <h1 className="text-2xl font-semibold text-[var(--TextColor)]">
-                  No page found
-                </h1>
-              }
+              element={<NotFound />}
             />
           </Routes>
         </Suspense>
