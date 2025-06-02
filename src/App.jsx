@@ -68,18 +68,18 @@ const App = () => {
         <Suspense fallback={<Loading />}>
           <Routes>
 
-            <Route path="/" element={<Home />} />
-            <Route path="/summary" element={<Summary />} />
-            <Route path="/quotations" element={<Quotations />} />
-            <Route path="/theme" element={<Theme />} />
-            <Route path="/video" element={<Video />} />
-            <Route path="/developer" element={<Developer />} />
+            <Route exact path="/" element={<Home />} />
+            <Route exact path="/summary" element={<Summary />} />
+            <Route exact path="/quotations" element={<Quotations />} />
+            <Route exact path="/theme" element={<Theme />} />
+            <Route exact path="/video" element={<Video />} />
+            <Route exact path="/developer" element={<Developer />} />
 
-            <Route path="/content" element={<Content />} />
-            <Route path="/content/read" element={<Read />} />
-            <Route path="/content/read/:id" element={<ReadDetails />} />
-            <Route path="/content/book-mark" element={<BookMarkContainer />} />
-            <Route path="/content/notes" element={<Notes />} />
+            <Route exact path="/content" element={<Content />} />
+            <Route exact path="/content/read" element={<Read />} />
+            <Route exact path="/content/read/:id" element={<ReadDetails />} />
+            <Route exact path="/content/book-mark" element={<BookMarkContainer />} />
+            <Route exact path="/content/notes" element={<Notes />} />
 
             {/* 404 */}
             <Route
