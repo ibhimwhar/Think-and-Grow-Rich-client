@@ -10,20 +10,20 @@ The frontend is built with **React.js**, **React Router**, **Tailwind CSS**, **A
 
 ## ✨ Features
 
-* 📖 Read individual chapters
-* 📚 Browse available chapters
-* 🔗 Navigate between chapters
-* 📌 Bookmark chapters
-* 📝 Create and manage notes
-* 🎨 Theme preferences
-* 🪄 Smooth UI animations
-* 🔘 Floating action menu
-* 🧭 Custom 404 Not Found page
-* 📱 Fully responsive design
-* ⚡ Fast client-side navigation
-* 🔌 Express.js API integration
-* ☁️ Supabase-backed chapter data
-* 🔗 External links open in a new tab
+- 📖 Read individual chapters
+- 📚 Browse available chapters
+- 🔗 Navigate between chapters
+- 📌 Bookmark chapters
+- 📝 Create and manage notes
+- 🎨 Theme preferences
+- 🪄 Smooth UI animations
+- 🔘 Floating action menu
+- 🧭 Custom 404 Not Found page
+- 📱 Fully responsive design
+- ⚡ Fast client-side navigation
+- 🔌 Express.js API integration
+- ☁️ Supabase-backed chapter data
+- 🔗 External links open in a new tab
 
 ---
 
@@ -31,19 +31,19 @@ The frontend is built with **React.js**, **React Router**, **Tailwind CSS**, **A
 
 ### Frontend
 
-* **React.js**
-* **React Router**
-* **Tailwind CSS**
-* **Axios**
-* **Framer Motion**
-* **Lucide React**
+- **React.js**
+- **React Router**
+- **Tailwind CSS**
+- **Axios**
+- **Framer Motion**
+- **Lucide React**
 
 ### Backend
 
-* **Node.js**
-* **Express.js**
-* **Supabase**
-* **PostgreSQL**
+- **Node.js**
+- **Express.js**
+- **Supabase**
+- **PostgreSQL**
 
 The frontend does not communicate directly with Supabase.
 
@@ -171,10 +171,7 @@ This frontend requires the **Think & Grow Rich Express backend** to be running.
 
 Clone the backend repository separately:
 
-```bash
-git clone https://github.com/ibhimwhar/Think-and-Grow-Rich-server.git
-```
-
+[Think & Grow Rich — Backend](https://github.com/ibhimwhar/Think-and-Grow-Rich-server)
 Navigate into it:
 
 ```bash
@@ -190,9 +187,9 @@ npm install
 Configure the backend `.env` file:
 
 ```env
-SUPABASE_URL=your_supabase_url
-SUPABASE_SERVICE_ROLE_KEY=your_supabase_service_role_key
-PORT=5000
+SUPABASE_URL=https://your-project.supabase.co
+SUPABASE_SERVICE_ROLE_KEY=your-service-role-key
+PORT=3000
 ```
 
 Start the backend:
@@ -204,7 +201,7 @@ npm run dev
 The backend should then be available at:
 
 ```text
-http://localhost:5000
+http://localhost:3000
 ```
 
 ---
@@ -216,7 +213,7 @@ The frontend communicates with the Express backend through HTTP requests.
 For example, chapters are retrieved using:
 
 ```http
-GET http://localhost:5000/chapters
+GET http://localhost:3000/chapters
 ```
 
 The request flow is:
@@ -404,7 +401,7 @@ npm run dev
 Backend:
 
 ```text
-http://localhost:5000
+http://localhost:3000
 ```
 
 ### Terminal 2 — Frontend
@@ -457,40 +454,6 @@ React Frontend
 
 ---
 
-# 🔐 Security
-
-The frontend does not contain the Supabase service-role key.
-
-Never add this to the React application:
-
-```text
-SUPABASE_SERVICE_ROLE_KEY
-```
-
-The service-role key must remain on the backend.
-
-The correct architecture is:
-
-```text
-React
-  ↓
-Express
-  ↓
-Supabase
-```
-
-Not:
-
-```text
-React
-  ↓
-Supabase Service Role Key
-  ↓
-Supabase
-```
-
----
-
 # 🌐 CORS
 
 During local development, the frontend and backend run on different ports.
@@ -511,8 +474,8 @@ const cors = require("cors");
 
 app.use(
   cors({
-    origin: "http://localhost:5173",
-  })
+    origin: "https://think-and-grow-rich-client.vercel.app",
+  }),
 );
 ```
 
@@ -577,20 +540,20 @@ When deployed, the architecture will look like:
 
 Planned features include:
 
-* 🔐 User authentication
-* 👤 User profiles
-* 📖 Reading progress
-* 📌 Persistent bookmarks
-* 📝 Persistent notes
-* ✨ Text highlighting
-* 🔎 Chapter search
-* 📊 Reading statistics
-* 🌓 Advanced themes
-* 🤖 AI-powered chapter summaries
-* 🤖 AI reading assistant
-* 📱 Improved mobile reading experience
-* ☁️ Persistent user preferences
-* 🔒 User-specific database permissions
+- 🔐 User authentication
+- 👤 User profiles
+- 📖 Reading progress
+- 📌 Persistent bookmarks
+- 📝 Persistent notes
+- ✨ Text highlighting
+- 🔎 Chapter search
+- 📊 Reading statistics
+- 🌓 Advanced themes
+- 🤖 AI-powered chapter summaries
+- 🤖 AI reading assistant
+- 📱 Improved mobile reading experience
+- ☁️ Persistent user preferences
+- 🔒 User-specific database permissions
 
 ---
 
