@@ -1,124 +1,397 @@
-import { Clipboard } from 'lucide-react'
-import { useState } from 'react'
+// pages/Sidebars/Quotations.jsx
+
+import { useMemo, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import Image from "../../assets/41c1be30-bb0a-40a2-8ba2-306cbac25746.jpg"
+import {
+  Search,
+  Clipboard,
+  Check,
+  Sparkles,
+  Quote,
+  Shuffle,
+  Share2,
+  X,
+} from "lucide-react";
+
+import Image from "../../assets/41c1be30-bb0a-40a2-8ba2-306cbac25746.jpg";
+
+// =========================================================
+// QUOTES
+// =========================================================
+
+import { quotes } from "../Sidebars/quotes";
 
 const Quotations = () => {
-    const [message, setMessage] = useState(false)
+  const [message, setMessage] = useState(false);
+  const [search, setSearch] = useState("");
+  const [copiedId, setCopiedId] = useState(null);
 
-    const quotes = [
-        { id: 1, description: "Whatever the mind can conceive and believe, it can achieve." },
-        { id: 2, description: "Set your mind on a definite goal and observe how quickly the world stands aside to let you pass." },
-        { id: 3, description: "A quitter never wins and a winner never quits." },
-        { id: 4, description: "When defeat comes, accept it as a signal that your plans are not sound, rebuild those plans, and set sail once more toward your coveted goal." },
-        { id: 5, description: "The starting point of all achievement is desire." },
-        { id: 6, description: "You are the master of your destiny. You can influence, direct and control your own environment." },
-        { id: 7, description: "More gold had been mined from the mind of men than the earth itself." },
-        { id: 8, description: "Great achievement is usually born of great sacrifice, and is never the result of selfishness." },
-        { id: 9, description: "Strength and growth come only through continuous effort and struggle." },
-        { id: 10, description: "Success comes to those who become success conscious." },
-        { id: 11, description: "There are no limitations to the mind except those we acknowledge." },
-        { id: 12, description: "The way of success is the way of continuous pursuit of knowledge." },
-        { id: 13, description: "Success requires no explanation. Failure permits no alibis." },
-        { id: 14, description: "You are the master of your fate, the captain of your soul." },
-        { id: 15, description: "A person who does not make decisions for himself is at the mercy of others' decisions." },
-        { id: 16, description: "Don't wait for the right conditions. They will never come." },
-        { id: 17, description: "Desire is the starting point of all achievement." },
-        { id: 18, description: "Every adversity, every failure, every heartache carries with it the seed of an equal or greater benefit." },
-        { id: 19, description: "The chief function of the body is to carry the brain around." },
-        { id: 20, description: "The ladder of success is never crowded at the top." },
-        { id: 21, description: "The more you give, the more you receive." },
-        { id: 22, description: "True greatness comes through service to others." },
-        { id: 23, description: "If you cannot do great things, do small things in a great way." },
-        { id: 24, description: "When one door closes, another door opens." },
-        { id: 25, description: "A person with a definite purpose in life is a person who attracts others." },
-        { id: 26, description: "Riches begin in the form of thought." },
-        { id: 27, description: "Action is the real measure of intelligence." },
-        { id: 28, description: "Success comes to those who become success conscious." },
-        { id: 29, description: "What you think about, you bring about." },
-        { id: 30, description: "Fear is the most destructive emotion." },
-        { id: 31, description: "Our minds become magnetized with the dominating thoughts which we hold in our minds." },
-        { id: 32, description: "The only limitation is the one you set up in your own mind." },
-        { id: 33, description: "Every person who achieves success in any great venture must expect to meet with opposition." },
-        { id: 34, description: "You are where you are and what you are because of your own mental attitude." },
-        { id: 35, description: "Success is not the key to happiness. Happiness is the key to success." },
-        { id: 36, description: "The person who takes no chances generally has to take whatever is left when others are through choosing." },
-        { id: 37, description: "What you give in return is what you get." },
-        { id: 38, description: "If you want riches, you must develop the habits of rich people." },
-        { id: 39, description: "One of the most common causes of failure is the habit of quitting when one is overtaken by temporary defeat." },
-        { id: 40, description: "The most important thing is to understand that the power lies within you." },
-        { id: 41, description: "A rich person is someone who has learned how to turn their thoughts into action." },
-        { id: 42, description: "The most successful people are those who are willing to change their thinking and actions." },
-        { id: 43, description: "Great achievements come from bold decisions and audacious plans." },
-        { id: 44, description: "The greatest strength in any man is the strength of his will." },
-        { id: 45, description: "Failure is a temporary event that can be overcome." },
-        { id: 46, description: "You can think your way into or out of almost anything." },
-        { id: 47, description: "Your burning desire is the starting point to success." },
-    ]
-    const handleShare = async (quote) => {
-        try {
-            await navigator.clipboard.writeText(quote.description)
-            setMessage(`Quote copied: "${quote.description}"`)
-            setTimeout(() => setMessage(false), 3000)
-        } catch (err) {
-            setMessage("Failed to copy quote.")
-            setTimeout(() => setMessage(false), 3000)
-        }
+  // =========================================================
+  // SEARCH
+  // =========================================================
+
+  const filteredQuotes = useMemo(() => {
+    const query = search.toLowerCase().trim();
+
+    if (!query) return quotes;
+
+    return quotes.filter(
+      (quote) =>
+        quote.description.toLowerCase().includes(query) ||
+        quote.category.toLowerCase().includes(query),
+    );
+  }, [search]);
+
+  // =========================================================
+  // COPY QUOTE
+  // =========================================================
+
+  const handleCopy = async (quote) => {
+    try {
+      await navigator.clipboard.writeText(
+        `"${quote.description}" — Napoleon Hill`,
+      );
+
+      setCopiedId(quote.id);
+
+      setMessage("Quote copied to clipboard");
+
+      setTimeout(() => {
+        setCopiedId(null);
+        setMessage(false);
+      }, 2500);
+    } catch (error) {
+      setMessage("Failed to copy quote");
+
+      setTimeout(() => {
+        setMessage(false);
+      }, 2500);
     }
+  };
 
-    return (
-        <div className=" px-4 py-6">
-            <h1 className="text-2xl font-semibold mb-6 text-center text-[var(--TextColor)]">
-                Quotes from <span className="italic">Think & Grow Rich</span>
-            </h1>
+  // =========================================================
+  // SHARE QUOTE
+  // =========================================================
 
-            {message && (
-                <AnimatePresence>
-                    <motion.div
-                        role="alert"
-                        initial={{ y: -100, opacity: 0 }}
-                        animate={{ y: 0, opacity: 1 }}
-                        exit={{ y: -100, opacity: 0 }}
-                        transition={{ duration: 0.4 }}
-                        className="fixed top-5 left-1/2 -translate-x-1/2 z-50 w-[90%] max-w-xs md:max-w-sm lg:max-w-md text-sm p-3 rounded-md bg-green-100 text-green-700 border border-green-200 text-center"
-                    >
-                        Quote Copied
-                    </motion.div>
-                </AnimatePresence>
-            )}
+  const handleShare = async (quote) => {
+    const shareData = {
+      title: "Think & Grow Rich",
+      text: `"${quote.description}" — Napoleon Hill`,
+      url: window.location.href,
+    };
 
-            <div className='flex justify-center'>
-                <img
-                    src={Image}
-                    alt="Think and grow rich book"
-                    className="min-w-50 rounded-md mb-4"
-                />
+    try {
+      if (navigator.share) {
+        await navigator.share(shareData);
+      } else {
+        await navigator.clipboard.writeText(
+          `"${quote.description}" — Napoleon Hill`,
+        );
+
+        setMessage("Quote copied for sharing");
+
+        setTimeout(() => {
+          setMessage(false);
+        }, 2500);
+      }
+    } catch (error) {
+      // User cancelled share dialog.
+      console.log("Share cancelled.");
+    }
+  };
+
+  // =========================================================
+  // RANDOM QUOTE
+  // =========================================================
+
+  const handleRandomQuote = () => {
+    const randomIndex = Math.floor(Math.random() * quotes.length);
+
+    const quote = quotes[randomIndex];
+
+    document.getElementById(`quote-${quote.id}`)?.scrollIntoView({
+      behavior: "smooth",
+      block: "center",
+    });
+  };
+
+  return (
+    <div className="space-y-8 pb-8">
+      {/* =================================================
+          TOAST
+      ================================================= */}
+
+      <AnimatePresence>
+        {message && (
+          <motion.div
+            initial={{ y: -30, opacity: 0, scale: 0.95 }}
+            animate={{ y: 0, opacity: 1, scale: 1 }}
+            exit={{ y: -30, opacity: 0, scale: 0.95 }}
+            className="fixed top-5 left-1/2 -translate-x-1/2 z-50 flex items-center gap-2 px-5 py-3 rounded-2xl bg-white text-neutral-700 shadow-[8px_8px_25px_rgba(180,190,205,0.35)] border border-neutral-200 text-sm font-medium"
+          >
+            <Check size={17} className="text-green-500" />
+
+            {message}
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* =================================================
+          HEADER
+      ================================================= */}
+
+      <section className="relative overflow-hidden rounded-[30px] bg-[var(--TextColor)] text-white p-6 md:p-8">
+        {/* Decorative circle */}
+
+        <div className="absolute -right-20 -top-24 w-64 h-64 rounded-full bg-white opacity-[0.07]" />
+
+        <div className="absolute -left-20 -bottom-32 w-56 h-56 rounded-full bg-white opacity-[0.05]" />
+
+        <div className="relative">
+          <div className="flex items-center gap-2 text-white/70 text-xs uppercase tracking-[0.18em] font-semibold">
+            <Quote size={15} />
+            Wisdom Library
+          </div>
+
+          <h1 className="text-3xl md:text-4xl font-bold mt-3 tracking-tight">
+            Quotes worth remembering.
+          </h1>
+
+          <p className="text-sm md:text-base text-white/70 mt-3 max-w-xl leading-relaxed">
+            A small collection of ideas from
+            <span className="font-semibold text-white">
+              {" "}
+              Think & Grow Rich
+            </span>{" "}
+            designed to give you something meaningful to come back to.
+          </p>
+
+          {/* Stats */}
+
+          <div className="flex flex-wrap gap-3 mt-6">
+            <div className="px-4 py-2 rounded-2xl bg-white/10 backdrop-blur-sm text-xs text-white/80">
+              <span className="font-bold text-white">{quotes.length}</span>{" "}
+              Quotes
             </div>
 
-            <p className='mt-8 mb-5 text-sm text-[var(--TextColor)]'>{quotes.length} quotes available</p>
-
-            <div className="grid gap-4">
-                {quotes.map((item) => (
-                    <div
-                        key={item.id}
-                        className="bg-white p-5 rounded-md border border-neutral-200 hover:shadow-md transition-shadow"
-                    >
-                        <div className="text-neutral-700 text-sm md:text-base leading-relaxed mb-3">
-                            {item.id}. {item.description}
-                        </div>
-                        <div className="flex justify-end">
-                            <button
-                                onClick={() => handleShare(item)}
-                                className="cursor-pointer border border-neutral-100 transition-all hover:ring-2 active:ring-2 ring-[var(--TextColor)] p-1.5 rounded-md"
-                            >
-                                <Clipboard size={18} />
-                            </button>
-                        </div>
-                    </div>
-                ))}
+            <div className="px-4 py-2 rounded-2xl bg-white/10 backdrop-blur-sm text-xs text-white/80">
+              3 Ideas
             </div>
+          </div>
         </div>
-    )
-}
+      </section>
 
-export default Quotations
+      {/* =================================================
+          BOOK IMAGE
+      ================================================= */}
+
+      <div className="flex justify-center">
+        <div className="p-2 max-w-[210px] w-full">
+          <img
+            src={Image}
+            alt="Think and Grow Rich book"
+            className="w-full rounded-[22px] object-cover"
+          />
+        </div>
+      </div>
+
+      {/* =================================================
+          SEARCH + RANDOM
+      ================================================= */}
+
+      <section className="space-y-3">
+        <div className="flex gap-3 items-center">
+          {/* Search */}
+          <div className="flex-1 flex items-center gap-3 bg-white rounded-2xl px-4 py-3 border border-neutral-200 focus-within:ring-2 focus-within:ring-[var(--TextColor)] transition-all">
+            <Search size={18} className="text-neutral-400 shrink-0" />
+
+            <input
+              type="text"
+              value={search}
+              onChange={(event) => setSearch(event.target.value)}
+              placeholder="Search quotes..."
+              className="outline-none bg-transparent w-full text-sm text-neutral-700 placeholder:text-neutral-400"
+            />
+            {search && (
+              <button
+                onClick={() => setSearch("")}
+                className="text-neutral-400 hover:text-neutral-700 transition cursor-pointer"
+              >
+                <X size={16} />
+              </button>
+            )}
+          </div>
+
+          {/* Random */}
+
+          <button
+            onClick={handleRandomQuote}
+            title="Random quote"
+            className="shrink-0 w-12 h-12 rounded-2xl bg-white flex items-center justify-center text-[var(--TextColor)] border border-neutral-200 hover:-translate-y-1 active:translate-y-0 transition-all cursor-pointer"
+          >
+            <Shuffle size={19} />
+          </button>
+        </div>
+
+        <div className="flex justify-between items-center px-1">
+          <p className="text-xs text-neutral-400">
+            {filteredQuotes.length}{" "}
+            {filteredQuotes.length === 1 ? "quote" : "quotes"} found
+          </p>
+
+          {search && (
+            <p className="text-xs text-[var(--TextColor)]">
+              Searching for "{search}"
+            </p>
+          )}
+        </div>
+      </section>
+
+      {/* =================================================
+          FEATURED QUOTE
+      ================================================= */}
+
+      {!search && (
+        <section className="border border-neutral-200 rounded-3xl p-6 md:p-8 relative overflow-hidden">
+          <div className="absolute -right-12 -top-12 w-32 h-32 rounded-full bg-[var(--TextColor)]/5" />
+
+          <div className="relative flex items-start gap-4">
+            <div className="shrink-0 w-11 h-11 rounded-2xl bg-[var(--TextColor)]/10 text-[var(--TextColor)] flex items-center justify-center">
+              <Sparkles size={20} />
+            </div>
+
+            <div>
+              <p className="text-[10px] uppercase tracking-[0.2em] text-[var(--TextColor)] font-bold">
+                Featured thought
+              </p>
+
+              <blockquote className="text-xl md:text-2xl font-semibold leading-relaxed text-neutral-800 mt-3">
+                "{quotes[0].description}"
+              </blockquote>
+
+              <p className="text-xs text-neutral-400 mt-4">— Napoleon Hill</p>
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* =================================================
+          QUOTES
+      ================================================= */}
+
+      <section className="space-y-4">
+        {filteredQuotes.length > 0 ? (
+          filteredQuotes.map((quote, index) => (
+            <motion.article
+              key={quote.id}
+              id={`quote-${quote.id}`}
+              layout
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{
+                duration: 0.25,
+                delay: index * 0.05,
+              }}
+              className="clay-soft p-5 md:p-6 group"
+            >
+              {/* Top row */}
+
+              <div className="flex justify-between items-center gap-3 mb-5">
+                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[var(--TextColor)]/8 text-[var(--TextColor)] text-[10px] uppercase tracking-wider font-bold">
+                  <Sparkles size={12} />
+
+                  {quote.category}
+                </div>
+
+                <span className="text-xs text-neutral-300 font-semibold">
+                  #{String(quote.id).padStart(2, "0")}
+                </span>
+              </div>
+
+              {/* Quote */}
+
+              <div className="relative">
+                <Quote
+                  size={30}
+                  className="absolute -top-1 -left-1 text-[var(--TextColor)]/10"
+                />
+
+                <p className="relative pl-7 text-base md:text-lg leading-relaxed text-neutral-700 font-medium">
+                  {quote.description}
+                </p>
+              </div>
+
+              {/* Bottom */}
+
+              <div className="flex items-center justify-between gap-3 mt-6 pt-4 border-t border-neutral-200/60">
+                <p className="text-xs text-neutral-400">Napoleon Hill</p>
+
+                <div className="flex gap-2">
+                  {/* Copy */}
+
+                  <button
+                    onClick={() => handleCopy(quote)}
+                    title="Copy quote"
+                    className="w-9 h-9 rounded-xl bg-white flex items-center justify-center text-neutral-500 hover:text-[var(--TextColor)] hover:-translate-y-0.5 border border-neutral-200 transition-all cursor-pointer"
+                  >
+                    {copiedId === quote.id ? (
+                      <Check size={16} className="text-green-500" />
+                    ) : (
+                      <Clipboard size={16} />
+                    )}
+                  </button>
+
+                  {/* Share */}
+
+                  <button
+                    onClick={() => handleShare(quote)}
+                    title="Share quote"
+                    className="w-9 h-9 rounded-xl bg-white flex items-center justify-center text-neutral-500 hover:text-[var(--TextColor)] hover:-translate-y-0.5 border border-neutral-200 transition-all cursor-pointer"
+                  >
+                    <Share2 size={16} />
+                  </button>
+                </div>
+              </div>
+            </motion.article>
+          ))
+        ) : (
+          <motion.div
+            initial={{ opacity: 0, scale: 0.97 }}
+            animate={{ opacity: 1, scale: 1 }}
+            className="clay-soft text-center py-12 px-6"
+          >
+            <div className="mx-auto w-14 h-14 rounded-2xl bg-white flex items-center justify-center text-neutral-400 shadow-[4px_4px_12px_rgba(180,190,205,0.2)]">
+              <Search size={22} />
+            </div>
+
+            <h3 className="font-bold text-lg mt-4">No quotes found</h3>
+
+            <p className="text-sm text-neutral-400 mt-2">
+              Try searching for another word or idea.
+            </p>
+
+            <button
+              onClick={() => setSearch("")}
+              className="mt-5 px-5 py-2.5 rounded-xl bg-[var(--TextColor)] text-white text-sm font-semibold hover:opacity-90 transition cursor-pointer"
+            >
+              Clear Search
+            </button>
+          </motion.div>
+        )}
+      </section>
+
+      {/* =================================================
+          FOOTER TIP
+      ================================================= */}
+
+      <section className="text-center py-4">
+        <div className="inline-flex items-center gap-2 text-xs text-neutral-400">
+          <Sparkles size={13} className="text-[var(--TextColor)]" />
+          Save the ideas that speak to you.
+        </div>
+      </section>
+    </div>
+  );
+};
+
+export default Quotations;

@@ -1,10 +1,324 @@
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
+/* =========================================================
+   Modern Claymorphism Design System
+   ========================================================= */
+
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap");
 @import "tailwindcss";
 
+/* =========================================================
+   DESIGN TOKENS
+   ========================================================= */
+
 :root {
-    --TextColor: #008fe2;
+  --TextColor: #008fe2;
+
+  /* Background */
+  --Background: #fbfdff;
+  --Surface: #ffffff;
+  --SurfaceSoft: #eef3f8;
+
+  /* Text */
+  --Heading: #172033;
+  --Body: #5f6b7a;
+  --Muted: #8b96a5;
+
+  /* Borders */
+  --Border: rgba(255, 255, 255, 0.8);
+
+  /* Clay shadows */
+  --ClayLight: rgba(255, 255, 255, 0.95);
+  --ClayDark: rgba(180, 190, 205, 0.35);
+
+  /* Radius */
+  --RadiusSm: 14px;
+  --RadiusMd: 40px;
+  --RadiusLg: 28px;
+  --RadiusXl: 36px;
+}
+
+/* =========================================================
+   BASE
+   ========================================================= */
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-    font-family: "Outfit", sans-serif;
+  margin: 0;
+  min-height: 100vh;
+
+  font-family: "Outfit", sans-serif;
+
+  color: var(--Heading);
+
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* =========================================================
+   SELECTION
+   ========================================================= */
+
+::selection {
+  background: var(--TextColor);
+  color: white;
+}
+
+/* =========================================================
+   SCROLLBAR
+   ========================================================= */
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--TextColor);
+  border-radius: 999px;
+}
+
+/* =========================================================
+   CLAYMORPHISM
+   ========================================================= */
+
+.clay-soft {
+  border-radius: var(--RadiusMd);
+}
+
+.clay-inset {
+  background: var(--Surface);
+
+  border-radius: var(--RadiusMd);
+
+  box-shadow:
+    inset 5px 5px 12px rgba(180, 190, 205, 0.25),
+    inset -5px -5px 12px rgba(255, 255, 255, 0.9);
+}
+
+/* =========================================================
+   CLAY BUTTON
+   ========================================================= */
+
+.clay-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  border: 0;
+  border-radius: 16px;
+
+  padding: 11px 18px;
+
+  background: var(--TextColor);
+  color: white;
+
+  font-family: inherit;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    opacity 0.2s ease;
+}
+
+.clay-button:hover {
+  transform: translateY(-2px);
+  opacity: 0.92;
+}
+
+.clay-button:active {
+  transform: translateY(1px);
+
+  box-shadow:
+    inset 3px 3px 7px rgba(0, 0, 0, 0.15),
+    inset -3px -3px 7px rgba(255, 255, 255, 0.2);
+}
+
+/* =========================================================
+   CLAY ICON BUTTON
+   ========================================================= */
+
+.clay-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 42px;
+  height: 42px;
+
+  border: 0;
+  border-radius: 14px;
+
+  background: var(--Surface);
+
+  color: var(--TextColor);
+
+  cursor: pointer;
+
+  box-shadow:
+    5px 5px 12px var(--ClayDark),
+    -5px -5px 12px var(--ClayLight);
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.clay-icon:hover {
+  transform: translateY(-2px);
+}
+
+.clay-icon:active {
+  transform: translateY(1px);
+
+  box-shadow:
+    inset 3px 3px 8px rgba(180, 190, 205, 0.3),
+    inset -3px -3px 8px rgba(255, 255, 255, 0.8);
+}
+
+/* =========================================================
+   INPUTS
+   ========================================================= */
+
+.clay-input {
+  width: 100%;
+
+  border: 0;
+  outline: none;
+
+  padding: 12px 16px;
+
+  border-radius: 16px;
+
+  background: var(--Surface);
+
+  color: var(--Heading);
+
+  font-family: inherit;
+
+  box-shadow:
+    inset 4px 4px 10px rgba(180, 190, 205, 0.22),
+    inset -4px -4px 10px rgba(255, 255, 255, 0.9);
+
+  transition:
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
+}
+
+.clay-input::placeholder {
+  color: var(--Muted);
+}
+
+.clay-input:focus {
+  box-shadow:
+    inset 4px 4px 10px rgba(180, 190, 205, 0.2),
+    inset -4px -4px 10px rgba(255, 255, 255, 0.9),
+    0 0 0 3px rgba(0, 143, 226, 0.12);
+}
+
+/* =========================================================
+   TEXT UTILITIES
+   ========================================================= */
+
+.text-muted {
+  color: var(--Muted);
+}
+
+.text-body {
+  color: var(--Body);
+}
+
+.text-brand {
+  color: var(--TextColor);
+}
+
+/* =========================================================
+   PAGE CONTAINER
+   ========================================================= */
+
+.page-container {
+  width: 100%;
+  max-width: 1100px;
+
+  margin: 0 auto;
+
+  padding: 24px;
+}
+
+/* =========================================================
+   CARD GRID
+   ========================================================= */
+
+.clay-grid {
+  display: grid;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  gap: 18px;
+}
+
+@media (min-width: 640px) {
+  .clay-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .clay-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+/* =========================================================
+   BRAND GLOW
+   ========================================================= */
+
+.brand-glow {
+  box-shadow:
+    0 0 0 1px rgba(0, 143, 226, 0.08),
+    0 10px 30px rgba(0, 143, 226, 0.12);
+}
+
+/* =========================================================
+   PAGE ANIMATION
+   ========================================================= */
+
+.page-enter {
+  animation: pageEnter 0.45s ease both;
+}
+
+@keyframes pageEnter {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 640px) {
+  .page-container {
+    padding: 16px;
+  }
+
+  .clay {
+    border-radius: 18px;
+  }
 }
