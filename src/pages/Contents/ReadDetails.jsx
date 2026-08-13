@@ -243,31 +243,31 @@ const ReadDetails = () => {
           CHAPTER HEADER
       ================================================= */}
 
-      <header className="relative overflow-hidden rounded-[32px] bg-[var(--TextColor)] text-white p-6 md:p-10 shadow-[8px_8px_25px_rgba(0,143,226,0.18)]">
+      <header className="relative overflow-hidden rounded-[32px] text-black p-6 md:p-10">
         {/* Decorative circles */}
 
-        <div className="absolute -right-20 -top-24 w-72 h-72 rounded-full bg-white opacity-[0.06]" />
+        <div className="absolute -right-20 -top-24 w-72 h-72 rounded-full bg-[var(--TextColor)] opacity-[0.06]" />
 
-        <div className="absolute -left-20 -bottom-32 w-72 h-72 rounded-full bg-white opacity-[0.05]" />
+        <div className="absolute -left-20 -bottom-32 w-72 h-72 rounded-full bg-[var(--TextColor)] opacity-[0.05]" />
 
         <div className="relative">
           <div className="flex flex-wrap items-center gap-2 mb-5">
-            <span className="px-3 py-1.5 rounded-full bg-white/10 text-[10px] uppercase tracking-[0.16em] font-bold">
+            <span className="px-3 py-1.5 rounded-full border border-neutral-200 text-[10px] uppercase tracking-[0.16em] font-bold">
               Chapter {currentIndex + 1}
             </span>
 
-            <span className="px-3 py-1.5 rounded-full bg-white/10 text-[10px] flex items-center gap-1.5">
+            <span className="px-3 py-1.5 rounded-full border border-neutral-200 text-[10px] flex items-center gap-1.5">
               <Clock3 size={12} />
               Reading
             </span>
           </div>
 
-          <h1 className="text-3xl md:text-5xl font-bold leading-tight tracking-tight max-w-3xl">
+          <h1 className="mt-16 text-3xl md:text-5xl font-bold leading-tight tracking-tight max-w-3xl">
             {chapter.title}
           </h1>
 
           {chapter.description && (
-            <p className="mt-5 max-w-2xl text-sm md:text-base leading-relaxed text-white/70">
+            <p className="mt-5 leading-relaxed text-black/70">
               {chapter.description}
             </p>
           )}
@@ -278,7 +278,7 @@ const ReadDetails = () => {
             <button
               onClick={handleBookmark}
               disabled={isBookmarked}
-              className="inline-flex items-center gap-2 px-4 py-2.5 rounded-2xl bg-white text-[var(--TextColor)] text-sm font-semibold hover:-translate-y-0.5 transition-all cursor-pointer disabled:cursor-default"
+              className="inline-flex items-center gap-2 px-4 py-2.5 rounded-2xl border border-neutral-200 bg-white text-[var(--TextColor)] text-sm font-semibold hover:-translate-y-0.5 transition-all cursor-pointer disabled:cursor-default"
             >
               {isBookmarked ? (
                 <BookmarkCheck size={16} />
@@ -291,7 +291,7 @@ const ReadDetails = () => {
 
             <button
               onClick={handleCopy}
-              className="inline-flex items-center gap-2 px-4 py-2.5 rounded-2xl bg-white/10 text-white text-sm font-semibold hover:bg-white/20 transition-all cursor-pointer"
+              className="inline-flex items-center gap-2 px-4 py-2.5 rounded-2xl border border-neutral-200 bg-white/10 text-black text-sm font-semibold hover:bg-white/20 transition-all cursor-pointer"
             >
               <Copy size={16} />
               Copy
@@ -299,7 +299,7 @@ const ReadDetails = () => {
 
             <button
               onClick={handleShare}
-              className="inline-flex items-center gap-2 px-4 py-2.5 rounded-2xl bg-white/10 text-white text-sm font-semibold hover:bg-white/20 transition-all cursor-pointer"
+              className="inline-flex items-center gap-2 px-4 py-2.5 rounded-2xl border border-neutral-200 bg-white/10 text-black text-sm font-semibold hover:bg-white/20 transition-all cursor-pointer"
             >
               <Share2 size={16} />
               Share
@@ -315,7 +315,7 @@ const ReadDetails = () => {
       <div className="flex items-center justify-between gap-3 my-6">
         <button
           onClick={() => setShowContents((previous) => !previous)}
-          className="inline-flex items-center gap-2 px-4 py-2.5 rounded-2xl bg-white text-neutral-600 text-xs font-semibold shadow-[5px_5px_15px_rgba(180,190,205,0.18)] hover:text-[var(--TextColor)] transition-colors cursor-pointer"
+          className="inline-flex items-center gap-2 px-4 py-2.5 rounded-2xl border border-neutral-200 bg-white text-neutral-600 text-xs font-semibold hover:text-[var(--TextColor)] transition-colors cursor-pointer"
         >
           <List size={16} />
           Contents
