@@ -30,8 +30,8 @@ const BookMarkContainer = () => {
 
     axios
       .all([
-        axios.get(`${import.meta.env.VITE_API_URL}/chapters`),
-        axios.get(`${import.meta.env.VITE_API_URL}/bookmarks`),
+        axios.get(`${import.meta.env.DATA_API_URL}/chapters`),
+        axios.get(`${import.meta.env.DATA_API_URL}/bookmarks`),
       ])
       .then(
         axios.spread((chaptersRes, bookmarksRes) => {
@@ -51,7 +51,7 @@ const BookMarkContainer = () => {
 
   const deleteBookmark = async (chapterId) => {
     try {
-      await axios.delete(`${import.meta.env.VITE_API_URL}/bookmarks/${chapterId}`);
+      await axios.delete(`${import.meta.env.DATA_API_URL}/bookmarks/${chapterId}`);
 
       setBookmarks((previous) =>
         previous.filter((bookmark) => bookmark.id !== chapterId),

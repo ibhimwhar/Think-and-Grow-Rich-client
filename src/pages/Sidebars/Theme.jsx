@@ -67,7 +67,7 @@ const Theme = () => {
 
   useEffect(() => {
     axios
-      .get(`${import.meta.env.VITE_API_URL}/theme`)
+      .get(`${import.meta.env.DATA_API_URL}/theme`)
       .then((res) => {
         const savedTheme = res.data.theme || "original";
 
@@ -101,7 +101,7 @@ const Theme = () => {
       setMessage(null);
     }, 2500);
 
-    axios.post(`${import.meta.env.VITE_API_URL}/theme`, { theme }).catch((err) => {
+    axios.post(`${import.meta.env.DATA_API_URL}/theme`, { theme }).catch((err) => {
       console.error("Failed to save theme", err);
     });
   };
