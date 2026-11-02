@@ -27,7 +27,7 @@ const Notes = () => {
 
   useEffect(() => {
     axios
-      .get(`${import.meta.env.DATA_API_URL}/notes`)
+      .get(`${import.meta.env.VITE_API_URL}/notes`)
       .then((res) => {
         setNotes(res.data);
         setLoading(false);
@@ -48,7 +48,7 @@ const Notes = () => {
     if (!trimmed) return;
 
     axios
-      .post(`${import.meta.env.DATA_API_URL}/notes`, {
+      .post(`${import.meta.env.VITE_API_URL}/notes`, {
         title: trimmed,
         content: trimmed,
       })
@@ -72,7 +72,7 @@ const Notes = () => {
     // Optimistic UI update
     setNotes((previous) => previous.filter((note) => note.id !== id));
 
-    axios.delete(`${import.meta.env.DATA_API_URL}/notes/${id}`).catch(() => {
+    axios.delete(`${import.meta.env.VITE_API_URL}/notes/${id}`).catch(() => {
       setError("Failed to delete note");
     });
   };

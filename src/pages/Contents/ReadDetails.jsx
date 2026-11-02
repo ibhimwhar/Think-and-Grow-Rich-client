@@ -44,9 +44,9 @@ const ReadDetails = () => {
 
         const [chapterResponse, chaptersResponse, bookmarksResponse] =
           await Promise.all([
-            axios.get(`${import.meta.env.DATA_API_URL}/chapters/${id}`),
-            axios.get(`${import.meta.env.DATA_API_URL}/chapters`),
-            axios.get(`${import.meta.env.DATA_API_URL}/bookmarks`),
+            axios.get(`${import.meta.env.VITE_API_URL}/chapters/${id}`),
+            axios.get(`${import.meta.env.VITE_API_URL}/chapters`),
+            axios.get(`${import.meta.env.VITE_API_URL}/bookmarks`),
           ]);
 
         setChapter(chapterResponse.data);
@@ -96,7 +96,7 @@ const ReadDetails = () => {
 
     try {
       const response = await axios.post(
-        `${import.meta.env.DATA_API_URL}/bookmarks/${chapter.id}`,
+        `${import.meta.env.VITE_API_URL}/bookmarks/${chapter.id}`,
       );
 
       setBookmarks((previous) => [...previous, response.data]);
